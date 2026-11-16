@@ -3,7 +3,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
   email VARCHAR(150) NOT NULL UNIQUE,
-  password VARCHAR(100) NOT NULL,
+  password_hash VARCHAR(150) NOT NULL,
   role VARCHAR(20) NOT NULL DEFAULT 'requester'
 );
 CREATE TABLE tickets (
@@ -14,10 +14,10 @@ CREATE TABLE tickets (
   requester_id INTEGER NOT NULL REFERENCES users(id),
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-INSERT INTO users(name,email,password,role) VALUES
-('Ana Silva','ana@example.test','ana123','requester'),
-('Bruno Costa','bruno@example.test','bruno123','requester'),
-('Carla Suporte','carla@example.test','suporte123','support');
+INSERT INTO users(name,email,password_hash,role) VALUES
+('Ana Silva','ana@example.test','$2b$10$5HcL0VvbcKiaVQVMXhVms.vlFbCVhTkVj4kWTEhuQwk/58JC./98m','requester'),
+('Bruno Costa','bruno@example.test','$2b$10$VX.DpNaVcEkN97QdvjsEjeUmsOSjHFwYN3Xs8cRDquGPTq9z7GXQ2','requester'),
+('Carla Suporte','carla@example.test','$2b$10$K3u/pXwqZUGLJ2sba6LLKe6pMNdRSI0s3iNyXEt4pu3PxhAITytae','support');
 INSERT INTO tickets(title, description, status, requester_id) VALUES
 ('Computador não liga','Desktop da sala 3 não inicia.','open',1),
 ('Problema no Wi-Fi','Notebook perde a conexão com a rede.','in_progress',2),
