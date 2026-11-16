@@ -58,6 +58,8 @@ Corpo JSON de exemplo para o login (somente credenciais fictícias):
 
 Usuários fictícios de teste: `ana@example.test`, `bruno@example.test`, `carla@example.test`. As respectivas senhas constam do `database/init.sql` para fins de laboratório.
 
+Após o login, as rotas de chamados exigem o cabeçalho didático `X-User-Id`. Solicitantes visualizam somente os próprios chamados; o usuário de suporte pode visualizar todos. Esse cabeçalho é apenas uma simplificação educacional e não substitui sessão ou token em produção. Como o esquema inicial mudou de senha em texto claro para `password_hash`, em uma instalação existente execute `docker compose down -v` antes de `docker compose up -d`.
+
 ## Atividade dos grupos
 
 1. Execute a API e observe o comportamento dos endpoints.
